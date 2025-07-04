@@ -1,3 +1,4 @@
+;;  -*- lexical-binding: t; -*-
 ;; [Q4 Mode by @desvox (Blake DeMarcy)]
 ;; [   https://github.com/desvox/q4   ]
 
@@ -806,6 +807,17 @@ list. Press d to show the number of photos in the list."
          "feh" nil (format "feh -FZ %s" urls))
       (message "Photo stack for this thread is empty."))))
 
+(defun q4/pass-to-nsxiv ()
+  "Pass the list of photos in this thread or catalog buffer to nsxiv.
+Uses fullscreen and auto-zoom to fit images to the screen."
+  (interactive)
+  (let ((urls (q4/threadpics-string)))
+    (if urls
+        (start-process-shell-command
+         "nsxiv" nil
+         (format "nsxiv -f -Z %s" urls))   ;; -f: fullscreen, -Z: auto-zoom to fill :contentReference[oaicite:0]{index=0}
+      (message "Photo stack for this thread is empty."))))
+
 
 (defun q4/open-post-image ()
   "Opens the current post's image in feh."
@@ -904,7 +916,9 @@ newly loaded buffer after switching."
     "D" (lambda () (interactive) (quit-window t))
     "]" 'q4/quote-hop-backward
     "[" 'q4/pop-mark
-    "a" 'q4/pass-to-feh
+;;    "a" 'q4/pass-to-feh
+    "a" 'q4/pass-to-nsxiv
+
     "A" 'q4/wget-threadpics
     "t" 'q4/toggle-thumbnails
     "T" 'q4/toggle-thumbnailing-method
