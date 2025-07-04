@@ -1,4 +1,4 @@
-* Project Todo
+* Project Todo (pre-fork)
 ** TODO Add per data transformations in thread
    same idea as the board and thread, but now for each post in the thread
 ** TODO Add better inline replies with overlays
@@ -40,4 +40,7 @@
 ** TODO add optional faces for tripcodes, names, dubs/trips/quads/etc..
 ** TODO get /pol/ flags centered in the row instead of at the bottom (looks weird af)
 ** TODO /pol/ ID support
-    
+* Project Todo (post-fork)
+** TODO qbittorrent support
+** TODO nsxiv support
+
